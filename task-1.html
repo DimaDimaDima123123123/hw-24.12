@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TASK 1</title>
+    <style>
+        body 
+        {
+            margin: 0;
+            height: 100vh;
+            background-image: url('background.jpg');
+            background-size: cover;
+            background-position: center;
+            overflow: hidden;
+        }
+        #animal
+        {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            pointer-events: none; 
+            transition: transform 0.05s linear;
+        }
+    </style>
+</head>
+<body>
+    <img id="animal" src="animal.png">
+    <script>
+        document.addEventListener("mousemove", function(event)
+        {
+            const animal = document.getElementById("animal");
+            const halfWidth = animal.offsetWidth / 2;
+            const halfHeight = animal.offsetHeight / 2;
+
+            let x = event.clientX - halfWidth;
+            let y = event.clientY - halfHeight;
+
+            const maxX = window.innerWidth - animal.offsetWidth;
+            const maxY = window.innerHeight - animal.offsetHeight;
+
+            x = Math.max(0, Math.min(x, maxX));
+            y = Math.max(0, Math.min(y, maxY));
+
+            animal.style.transform = `translate(${x}px, ${y}px)`;
+        });
+    </script>
+</body>
+</html>
